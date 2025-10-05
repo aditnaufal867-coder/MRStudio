@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRStudio - ESP32 PLC IDE</title>
+    
+    <!-- AdminLTE2 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/skins/_all-skins.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- AdminLTE2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js/adminlte.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Custom JS -->
+    <script src="js/ladder-designer.js"></script>
+    <script src="js/plc-engine.js"></script>
+    <script src="js/code-generator.js"></script>
+    <script src="js/upload-manager.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+            <a href="#" class="logo">
+                <span class="logo-mini"><b>PLC</b></span>
+                <span class="logo-lg"><b>MRStudio</b> PLC IDE</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" id="compile-btn">
+                                <i class="fa fa-play"></i> Compile & Upload
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="https://via.placeholder.com/45x45" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>PLC Programmer</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-sitemap"></i> <span>Ladder Logic</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> New Project</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Open Project</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Save Project</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-microchip"></i> <span>Target Board</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> ESP32</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> Arduino Nano</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> LGT8F328P</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Ladder Logic Designer</h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Ladder Designer</li>
+                </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <!-- Element Palette -->
+                    <div class="col-md-3">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Element Palette</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="element-palette">
+                                    <div class="element-item" draggable="true" data-element="NO">
+                                        <i class="fa fa-square-o"></i>
+                                        <span>NO Contact</span>
+                                    </div>
+                                    <div class="element-item" draggable="true" data-element="NC">
+                                        <i class="fa fa-square"></i>
+                                        <span>NC Contact</span>
+                                    </div>
+                                    <div class="element-item" draggable="true" data-element="COIL">
+                                        <i class="fa fa-circle"></i>
+                                        <span>Coil</span>
+                                    </div>
+                                    <div class="element-item" draggable="true" data-element="TIMER">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span>Timer</span>
+                                    </div>
+                                    <div class="element-item" draggable="true" data-element="COUNTER">
+                                        <i class="fa fa-sort-numeric-asc"></i>
+                                        <span>Counter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Element Properties -->
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Properties</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="element-properties">
+                                    <div class="form-group">
+                                        <label for="element-address">Address:</label>
+                                        <input type="text" class="form-control" id="element-address" placeholder="e.g., I0.0, Q0.0, M0.0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="element-type">Type:</label>
+                                        <select class="form-control" id="element-type">
+                                            <option value="input">Input</option>
+                                            <option value="output">Output</option>
+                                            <option value="memory">Memory</option>
+                                            <option value="timer">Timer</option>
+                                            <option value="counter">Counter</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="timer-params" style="display: none;">
+                                        <label for="timer-preset">Preset (ms):</label>
+                                        <input type="number" class="form-control" id="timer-preset" placeholder="1000">
+                                    </div>
+                                    <div class="form-group" id="counter-params" style="display: none;">
+                                        <label for="counter-preset">Preset:</label>
+                                        <input type="number" class="form-control" id="counter-preset" placeholder="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ladder Canvas -->
+                    <div class="col-md-9">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Ladder Logic Canvas</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" id="zoom-in">
+                                        <i class="fa fa-search-plus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" id="zoom-out">
+                                        <i class="fa fa-search-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" id="grid-toggle">
+                                        <i class="fa fa-th"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="ladder-toolbar">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default" id="select-tool">
+                                            <i class="fa fa-mouse-pointer"></i> Select
+                                        </button>
+                                        <button type="button" class="btn btn-default" id="line-tool">
+                                            <i class="fa fa-minus"></i> Line
+                                        </button>
+                                        <button type="button" class="btn btn-default" id="delete-tool">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="ladder-canvas" class="ladder-canvas">
+                                    <svg id="ladder-svg" width="100%" height="600px">
+                                        <!-- Grid will be generated here -->
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
