@@ -46,7 +46,28 @@ export function PropertiesPanel() {
         </div>
         <div>
           <label>Function</label>
-          <input className="form-control" value={selected.func || ''} onChange={(e) => updateField('func', e.target.value)} placeholder="optional function name" />
+          {selected.type === 'COIL' && (
+            <select className="form-control" value={selected.func || ''} onChange={(e) => updateField('func', e.target.value)}>
+              <option value="">Standard</option>
+              <option value="SET">SET</option>
+              <option value="RST">RST</option>
+            </select>
+          )}
+          {selected.type === 'TIMER' && (
+            <select className="form-control" value={selected.func || 'TON'} onChange={(e) => updateField('func', e.target.value)}>
+              <option value="TON">TON</option>
+              <option value="TOF">TOF</option>
+            </select>
+          )}
+          {selected.type === 'COUNTER' && (
+            <select className="form-control" value={selected.func || 'CTU'} onChange={(e) => updateField('func', e.target.value)}>
+              <option value="CTU">CTU</option>
+              <option value="CTD">CTD</option>
+            </select>
+          )}
+          {(selected.type === 'NO' || selected.type === 'NC') && (
+            <input className="form-control" value={selected.func || ''} onChange={(e) => updateField('func', e.target.value)} placeholder="optional label" />
+          )}
         </div>
 
         {selected.type === 'TIMER' && (
