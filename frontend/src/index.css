@@ -1,0 +1,51 @@
+:root {
+  --sidebar-width: 260px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+#root {
+  height: 100%;
+}
+
+.ladder-canvas {
+  width: 100%;
+  height: calc(100vh - 160px);
+  background-image: linear-gradient(#f0f0f0 1px, transparent 1px),
+    linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px;
+  background-position: 0 0, 0 0;
+  position: relative;
+  overflow: auto;
+}
+
+.palette-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  cursor: grab;
+  background-color: #fff;
+}
+
+.properties-panel label {
+  display: block;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.properties-panel input, .properties-panel select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

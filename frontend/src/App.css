@@ -1,0 +1,4 @@
+/* AdminLTE overrides if needed */
+.content-wrapper {
+  min-height: calc(100vh - 101px);
+}
